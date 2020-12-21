@@ -1,0 +1,37 @@
+GET http://localhost:9000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDc3Mjk2OTAsImV4cCI6MTYwNzczMTQ5MCwiYXVkIjoiNWZkM2YwNDA2MTExMDQzNjcwMTc4NDI0IiwiaXNzIjoieW91cm1vbS5jb20ifQ.gp0pOMmTkiv1uSvWcrW3dbIdrXMzhGdkZh0lb71fygI
+
+### Register
+POST  http://localhost:9000/auth/register
+Content-Type: application/json
+
+{
+    "displayName": "aaaaaaea",
+    "password": "test122aae",
+    "passwordCheck": "test122aae"
+}
+
+### Login
+POST  http://localhost:9000/auth/login
+Content-Type: application/json
+
+{
+    "displayName": "aaaaaaea",
+    "password": "test122aae"
+}
+
+### Refresh Token
+POST  http://localhost:9000/auth/refreshToken
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDc3MjU3NzEsImV4cCI6MTYzOTI4MzM3MSwiYXVkIjoiNWZkM2YwNDA2MTExMDQzNjcwMTc4NDI0IiwiaXNzIjoieW91cm1vbS5jb20ifQ.aDYW0dx-7Qj-2W2jVSN1B9bopdIdOKiQEoKG5wbwqjE"
+}
+
+### Logout
+DELETE   http://localhost:9000/auth/logout
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MDc3MjkxMzIsImV4cCI6MTYzOTI4NjczMiwiYXVkIjoiNWZkM2YwNDA2MTExMDQzNjcwMTc4NDI0IiwiaXNzIjoieW91cm1vbS5jb20ifQ.11eRIjAgVGqQ2W2BY2RnoXkUeStcLP8AT-3HuVFuh6E"
+}
