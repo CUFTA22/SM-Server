@@ -43,11 +43,30 @@ module.exports = {
       });
       const savedUser = await newUser.save();
 
+      // Sign Tokens
+
+      const accessToken = signAccessToken(savedUser.id);
+      const refreshToken = signRefreshToken(savedUser.id);
+
+      // Set Cookies
+
+      res.cookie("refreshToken", refreshToken, {
+        signed: true,
+        httpOnly: true,
+        // secure: true
+      });
+
       res.status(200).json({
+        userInfo: {
+          displayName,
+          isAdmin: savedUser.isAdmin,
+        },
+        accessToken,
         variant: "success",
         message: "Account successfully created!",
       });
     } catch (error) {
+      console.log(error);
       res.status(500).json({ message: "If you see this, shit went down!" });
     }
   },
@@ -97,6 +116,7 @@ module.exports = {
         message: "Authentication successful!",
       });
     } catch (error) {
+      console.log();
       res.status(500).json({
         variant: "error",
         message: "If you see this, shit went down!",
@@ -116,7 +136,8 @@ module.exports = {
   checkAuth: async (req, res) => {
     const { signedCookies = {} } = req;
     const { refreshToken } = signedCookies;
-    if (!refreshToken) return;
+    if (!refreshToken)
+      return res.status(401).json({ message: "Unauthorized!" });
 
     const payload = jwt.decode(refreshToken);
 

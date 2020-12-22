@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
+const helmet = require("helmet");
 const cors = require("cors");
 
 // Set up express
@@ -15,6 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET)); // use cookie parser for secure httpOnly cookie
+app.use(helmet());
 app.use(
   cors({
     origin: process.env.CLIENT_URL, // url of the frontend application
