@@ -46,9 +46,9 @@ app.use("/posts", require("./routes/postRouter"));
 
 // Catch all route, if requested route doesnt exist
 
-// app.use((req, res) => {
-//   res.status(404).json({ message: "Route not found!" });
-// });
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found!" });
+});
 
 // Start up server
 
