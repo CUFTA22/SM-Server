@@ -58,7 +58,8 @@ module.exports = {
       res.cookie("refreshToken", refreshToken, {
         signed: true,
         httpOnly: true,
-        // secure: true
+        sameSite: "none",
+        secure: true,
       });
 
       res.status(200).json({
@@ -111,6 +112,8 @@ module.exports = {
       res.cookie("refreshToken", refreshToken, {
         signed: true,
         httpOnly: true,
+        sameSite: "none",
+        secure: true,
       });
 
       res.status(200).json({
