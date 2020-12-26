@@ -37,7 +37,9 @@ module.exports = {
         postId: savedPost.id,
       });
     } catch (error) {
-      res.status(500).json({ message: "If you see this, shit went down!" });
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
     }
   },
 
@@ -54,7 +56,9 @@ module.exports = {
 
       res.status(200).json(foundPost);
     } catch (error) {
-      res.status(500).json({ message: "If you see this, shit went down!" });
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
     }
   },
 
@@ -90,7 +94,9 @@ module.exports = {
           break;
       }
     } catch (error) {
-      res.status(500).json({ message: "If you see this, shit went down!" });
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
     }
   },
 
