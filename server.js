@@ -42,10 +42,7 @@ mongoose.connect(
 app.get("/", (req, res) => res.send("Hello World"));
 
 app.use("/auth", require("./routes/authRouter"));
-
-app.get("/api/protected", (req, res) => {
-  res.status(200).json({ message: "Some secret stuff!" });
-});
+app.use("/posts", require("./routes/postRouter"));
 
 // Catch all route, if requested route doesnt exist
 

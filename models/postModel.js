@@ -8,9 +8,10 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     title: { type: String, required: true },
-    description: { type: String, required: true },
-    language: { type: String, required: true },
-    stars: { type: Number },
+    desc: { type: String, required: true },
+    lang: { type: String, required: true },
+    ghLink: { type: String, required: true },
+    stars: { type: Number, default: 0 },
     usersStar: { type: Array }, // Array of displayNames
   },
   { timestamps: true }
