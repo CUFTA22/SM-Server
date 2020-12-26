@@ -59,7 +59,7 @@ module.exports = {
         signed: true,
         httpOnly: true,
         sameSite: "none",
-        secure: true,
+        // secure: true,
       });
 
       res.status(200).json({
@@ -113,7 +113,7 @@ module.exports = {
         signed: true,
         httpOnly: true,
         sameSite: "none",
-        secure: true,
+        // secure: true,
       });
 
       res.status(200).json({
@@ -136,7 +136,9 @@ module.exports = {
   logout: (req, res) => {
     res
       .status(202)
-      .clearCookie("refreshToken")
+      .clearCookie("refreshToken", {
+        sameSite: "none",
+      })
       .json({ message: "Signed Out!" });
   },
 
