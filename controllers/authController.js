@@ -29,7 +29,12 @@ module.exports = {
           .status(400)
           .json({ variant: "warning", message: "Password must match!" });
 
-      const existingUser = await User.findOne({ displayName });
+      const existingUser = await User.findOne({
+        displayName: {
+          $regex: new RegExp(`^${displayName}$`),
+          $options: "i",
+        },
+      });
       if (existingUser)
         return res
           .status(400)
@@ -66,7 +71,10 @@ module.exports = {
         message: "Account successfully created!",
       });
     } catch (error) {
-      res.status(500).json({ message: "If you see this, shit went down!" });
+      res.status(500).json({
+        variant: "error",
+        message: "If you see this, shit went down!",
+      });
     }
   },
 
@@ -115,7 +123,6 @@ module.exports = {
         message: "Authentication successful!",
       });
     } catch (error) {
-      console.log();
       res.status(500).json({
         variant: "error",
         message: "If you see this, shit went down!",

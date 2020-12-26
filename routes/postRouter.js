@@ -7,13 +7,13 @@ router.post("/add", postController.add);
 
 //? Get One ==========================================================================
 
-router.get("/get", postController.get);
+router.get("/getOne", postController.getOne);
 
-//? Get Many ==========================================================================
+//? Get Many, Front Page =============================================================
 
-router.get("/many", postController.many);
+router.get("/front", postController.front);
 
-//? Delete ==========================================================================
+//? Delete ===========================================================================
 
 router.delete("/delete", postController.delete);
 
