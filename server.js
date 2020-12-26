@@ -23,7 +23,7 @@ app.use(
     credentials: true, // set credentials true for secure httpOnly cookie
   })
 );
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 
 // DB connection
 
