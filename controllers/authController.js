@@ -138,6 +138,7 @@ module.exports = {
       .status(202)
       .clearCookie("refreshToken", {
         sameSite: "none",
+        secure: true,
       })
       .json({ message: "Signed Out!" });
   },
