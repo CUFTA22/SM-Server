@@ -58,14 +58,15 @@ module.exports = {
       res.cookie("refreshToken", refreshToken, {
         signed: true,
         httpOnly: true,
-        sameSite: "none",
-        secure: true,
+        // sameSite: "none",
+        // secure: true,
       });
 
       res.status(200).json({
         userInfo: {
           displayName,
           isAdmin: savedUser.isAdmin,
+          avatar: savedUser.avatar,
         },
         accessToken,
         variant: "success",
@@ -112,14 +113,15 @@ module.exports = {
       res.cookie("refreshToken", refreshToken, {
         signed: true,
         httpOnly: true,
-        sameSite: "none",
-        secure: true,
+        // sameSite: "none",
+        // secure: true,
       });
 
       res.status(200).json({
         userInfo: {
           displayName,
           isAdmin: existingUser.isAdmin,
+          avatar: existingUser.avatar,
         },
         accessToken,
         variant: "success",
@@ -137,8 +139,8 @@ module.exports = {
     res
       .status(202)
       .clearCookie("refreshToken", {
-        sameSite: "none",
-        secure: true,
+        // sameSite: "none",
+        // secure: true,
       })
       .json({ message: "Signed Out!" });
   },
@@ -160,6 +162,7 @@ module.exports = {
       userInfo: {
         displayName: user.displayName,
         isAdmin: user.isAdmin,
+        avatar: user.avatar,
       },
       accessToken,
     });

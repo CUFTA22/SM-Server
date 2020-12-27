@@ -62,6 +62,24 @@ module.exports = {
     }
   },
 
+  forOneUser: async (req, res) => {
+    try {
+      const displayName = req.query.displayName;
+
+      const user = await User.findOne({ displayName });
+
+      const posts = await Post.find({ user: user._id })
+        .populate("user", "displayName -_id")
+        .sort({ stars: -1 });
+
+      res.status(200).json(posts);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
+    }
+  },
+
   front: async (req, res) => {
     try {
       const filter = req.query.filter;

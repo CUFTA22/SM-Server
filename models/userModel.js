@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema(
     },
     password: { type: String, required: true },
     isAdmin: { type: String, required: true, default: false },
-    imageURL: { type: String },
+    avatar: { type: String, required: true, default: "singi" },
+    chips: [{ type: mongoose.Schema.Types.ObjectId, ref: "chips" }],
   },
   { timestamps: true }
 );
