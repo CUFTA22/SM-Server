@@ -8,7 +8,7 @@ router.get("/get", authMiddleware, userController.get);
 
 //? Update - Avatar ==========================================================================
 
-// router.update("/update/avatar", userController.updateAvatar);
+router.post("/updateAvatar", authMiddleware, userController.updateAvatar);
 
 //? Earn a Chip =============================================================
 
