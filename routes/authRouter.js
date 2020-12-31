@@ -13,12 +13,8 @@ router.post("/login", authController.login);
 
 router.post("/logout", authController.logout);
 
-//? Refresh Token ==========================================================================
-
-router.post("/refreshToken", authController.refreshToken); // Silent Auth
-
 //? Check Auth ==========================================================================
 
-router.post("/checkAuth", authController.checkAuth); // Page Refresh
+router.post("/checkAuth", authController.checkAuth); // Page Refresh + Silent Auth
 
 module.exports = router;

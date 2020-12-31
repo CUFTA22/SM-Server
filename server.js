@@ -44,6 +44,7 @@ app.get("/", (req, res) => res.send("Hello World"));
 app.use("/auth", require("./routes/authRouter"));
 app.use("/user", require("./routes/userRouter"));
 app.use("/posts", require("./routes/postRouter"));
+app.use("/quiz", require("./routes/quizRouter"));
 
 // Catch all route, if requested route doesnt exist
 

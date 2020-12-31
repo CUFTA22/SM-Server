@@ -145,8 +145,7 @@ module.exports = {
       .json({ message: "Signed Out!" });
   },
 
-  refreshToken: (req, res) => {},
-
+  // We use on first load and to refresh token ( Silent auth )
   checkAuth: async (req, res) => {
     const { signedCookies = {} } = req;
     const { refreshToken } = signedCookies;

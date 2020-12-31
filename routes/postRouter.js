@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 //? Create ==========================================================================
 
-router.post("/add", postController.add);
+router.post("/add", authMiddleware, postController.add);
 
 //? Get One ==========================================================================
 
@@ -20,6 +20,6 @@ router.get("/forOneUser", authMiddleware, postController.forOneUser);
 
 //? Delete ===========================================================================
 
-router.delete("/delete", postController.delete);
+router.delete("/delete", authMiddleware, postController.delete);
 
 module.exports = router;
