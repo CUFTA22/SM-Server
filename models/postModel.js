@@ -11,7 +11,6 @@ const postSchema = new mongoose.Schema(
     desc: { type: String, required: true },
     lang: { type: String, required: true },
     ghLink: { type: String, required: true },
-    stars: { type: Number, default: 0 },
     usersStar: { type: Array }, // Array of displayNames
   },
   { timestamps: true }

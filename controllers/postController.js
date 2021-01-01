@@ -52,7 +52,8 @@ module.exports = {
         "displayName -_id"
       );
 
-      if (!foundPost) res.status(404).json({ message: "Post not found!" });
+      if (!foundPost)
+        return res.status(404).json({ message: "Post not found!" });
 
       res.status(200).json(foundPost);
     } catch (error) {
@@ -89,7 +90,7 @@ module.exports = {
         case "Stars":
           const posts1 = await Post.find()
             .populate("user", "displayName -_id")
-            .sort({ stars: -1 })
+            .sort({ usersStar: -1 })
             .limit(count);
           res.status(200).json(posts1);
           break;
@@ -118,7 +119,41 @@ module.exports = {
     }
   },
 
+  star: async (req, res) => {
+    try {
+      const postId = req.body.postId;
+      const userId = req.user;
+
+      const post = await Post.findById(postId);
+
+      const user = await User.findById(userId);
+
+      // Check if User has already starred
+      if (post.usersStar.indexOf(user.displayName) !== -1) {
+        await post.updateOne({ $pull: { usersStar: user.displayName } });
+        res.status(201).json({ message: "Unstarred!" });
+      } else {
+        await post.updateOne({ $push: { usersStar: user.displayName } });
+        res.status(201).json({ message: "Starred!" });
+      }
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
+    }
+  },
+
   delete: async (req, res) => {
-    res.send("msg");
+    try {
+      const postId = req.body.postId;
+
+      await Post.findByIdAndDelete(postId);
+
+      res.status(200).json({ message: "Deleted Successfully!" });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
+    }
   },
 };

@@ -6,6 +6,10 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 router.post("/add", authMiddleware, postController.add);
 
+//? Submit Star ===========================================================================
+
+router.post("/star", authMiddleware, postController.star);
+
 //? Get One ==========================================================================
 
 router.get("/getOne", postController.getOne);
@@ -20,6 +24,6 @@ router.get("/forOneUser", authMiddleware, postController.forOneUser);
 
 //? Delete ===========================================================================
 
-router.delete("/delete", authMiddleware, postController.delete);
+router.post("/delete", authMiddleware, postController.delete);
 
 module.exports = router;

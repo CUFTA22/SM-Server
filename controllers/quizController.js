@@ -21,7 +21,7 @@ module.exports = {
       await user.updateOne({ $push: { chips: chip._id } });
 
       res.status("201").json({
-        message: `Test Passed, enjoy ${subject} your badge!`,
+        message: `Test Passed, enjoy your ${subject} badge!`,
       });
     } catch (error) {
       res
