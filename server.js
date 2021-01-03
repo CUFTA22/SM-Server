@@ -19,7 +19,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET)); // use cookie parser for secur
 app.use(helmet());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL, // url of the frontend application
+    origin: process.env.FOR_HEROKU, // FOR_HEROKU - CLIENT_URL
     credentials: true, // set credentials true for secure httpOnly cookie
   })
 );

@@ -71,7 +71,7 @@ module.exports = {
 
       const posts = await Post.find({ user: user._id })
         .populate("user", "displayName -_id")
-        .sort({ stars: -1 });
+        .sort({ usersStar: -1 });
 
       res.status(200).json(posts);
     } catch (error) {
