@@ -20,7 +20,7 @@ router.get("/front", postController.front);
 
 //? Get Many, Profile Page ===========================================================
 
-router.get("/forOneUser", authMiddleware, postController.forOneUser);
+router.get("/forOneUser", postController.forOneUser);
 
 //? Delete ===========================================================================
 

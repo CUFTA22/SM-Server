@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
     },
     password: { type: String, required: true },
     isAdmin: { type: String, required: true, default: false },
+    verified: { type: Boolean, required: true, default: false },
     avatar: { type: String, required: true, default: "singi" },
     chips: [{ type: mongoose.Schema.Types.ObjectId, ref: "chips" }],
   },

@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 //? Get Info by ID ==========================================================================
 
-router.get("/get", authMiddleware, userController.get);
+router.get("/get", userController.get);
 
 //? Update - Avatar ==========================================================================
 
