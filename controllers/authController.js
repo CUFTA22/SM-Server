@@ -59,8 +59,8 @@ module.exports = {
         signed: true,
         httpOnly: true,
         // Uncomment sameSite and secure for heroku
-        // sameSite: "none",
-        // secure: true,
+        sameSite: "none",
+        secure: true,
       });
 
       res.status(200).json({
@@ -115,8 +115,8 @@ module.exports = {
         signed: true,
         httpOnly: true,
         // Uncomment sameSite and secure for heroku
-        // sameSite: "none",
-        // secure: true,
+        sameSite: "none",
+        secure: true,
       });
 
       res.status(200).json({
@@ -142,8 +142,8 @@ module.exports = {
       .status(202)
       .clearCookie("refreshToken", {
         // Uncomment sameSite and secure for heroku
-        // sameSite: "none",
-        // secure: true,
+        sameSite: "none",
+        secure: true,
       })
       .json({ message: "Signed Out!" });
   },
