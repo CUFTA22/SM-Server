@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema(
     verified: { type: Boolean, required: true, default: false },
     avatar: { type: String, required: true, default: "singi" },
     chips: [{ type: mongoose.Schema.Types.ObjectId, ref: "chips" }],
+    savedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "posts" }],
   },
   { timestamps: true }
 );

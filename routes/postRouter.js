@@ -6,9 +6,17 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 router.post("/add", authMiddleware, postController.add);
 
-//? Submit Star ===========================================================================
+//? Search ==========================================================================
+
+router.get("/search", postController.search);
+
+//? Submit Star =====================================================================
 
 router.post("/star", authMiddleware, postController.star);
+
+//? Save Post =======================================================================
+
+router.post("/savePost", authMiddleware, postController.savePost);
 
 //? Get One ==========================================================================
 
@@ -18,9 +26,13 @@ router.get("/getOne", postController.getOne);
 
 router.get("/front", postController.front);
 
-//? Get Many, Profile Page ===========================================================
+//? Get Many, Profile Page Users =====================================================
 
 router.get("/forOneUser", postController.forOneUser);
+
+//? Get Many, Profile Page Saved =====================================================
+
+router.get("/forOneSaved", postController.forOneSaved);
 
 //? Delete ===========================================================================
 

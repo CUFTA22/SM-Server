@@ -43,6 +43,30 @@ module.exports = {
     }
   },
 
+  search: async (req, res) => {
+    try {
+      const { query } = req.query;
+
+      const posts = await Post.find(
+        {
+          $text: { $search: `${query}`, $caseSensitive: false },
+        },
+        { score: { $meta: "textScore" } }
+      )
+        .sort({ score: { $meta: "textScore" } })
+        .populate("user", "displayName -_id")
+        .limit(20);
+
+      if (!posts) return res.status(404).json({ message: "Posts not found!" });
+
+      res.status(200).json(posts);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
+    }
+  },
+
   getOne: async (req, res) => {
     try {
       const id = req.query.id;
@@ -74,6 +98,22 @@ module.exports = {
         .sort({ usersStar: -1 });
 
       res.status(200).json(posts);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
+    }
+  },
+
+  forOneSaved: async (req, res) => {
+    try {
+      const displayName = req.query.displayName;
+
+      const user = await User.findOne({ displayName })
+        .populate("savedPosts")
+        .sort({ savedPosts: -1 });
+
+      res.status(200).json(user.savedPosts);
     } catch (error) {
       res
         .status(500)
@@ -150,6 +190,32 @@ module.exports = {
       await Post.findByIdAndDelete(postId);
 
       res.status(200).json({ message: "Deleted Successfully!" });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: error, message: "If you see this, shit went down!" });
+    }
+  },
+
+  savePost: async (req, res) => {
+    try {
+      const postId = req.body.postId;
+      const userId = req.user;
+
+      const post = await Post.findById(postId);
+
+      const user = await User.findById(userId);
+
+      // Check if User has already saved
+      if (user.savedPosts.indexOf(postId) !== -1) {
+        await post.updateOne({ $pull: { usersSave: user.displayName } });
+        await user.updateOne({ $pull: { savedPosts: postId } });
+        res.status(201).json({ message: "Unsaved!" });
+      } else {
+        await post.updateOne({ $push: { usersSave: user.displayName } });
+        await user.updateOne({ $push: { savedPosts: postId } });
+        res.status(201).json({ message: "Saved!" });
+      }
     } catch (error) {
       res
         .status(500)
